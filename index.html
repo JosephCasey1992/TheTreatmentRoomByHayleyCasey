@@ -516,17 +516,6 @@
     .section-sm { padding: 4.5rem 1.75rem; }
     .section-sm-inner { max-width: 760px; margin: 0 auto; }
 
-    /* ─── Location placeholder ─── */
-    .map-placeholder {
-      background: linear-gradient(135deg, #ded4ce 0%, #e8ddd8 100%);
-      height: 280px; position: relative;
-      display: flex; align-items: center; justify-content: center;
-      overflow: hidden;
-    }
-    .map-placeholder::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 50% 45%, rgba(176,120,112,0.12) 0%, transparent 65%);
-    }
 
     /* ─── Footer ─── */
     footer {
@@ -853,9 +842,9 @@
           <button class="btn" onclick="showPage('contact')">Book Now</button>
         </div>
         <div>
-          <div id="map-placeholder" style="width:100%;height:280px;border-radius:4px;background:var(--cream);display:flex;align-items:center;justify-content:center;">
-            <span style="font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;">Loading map…</span>
-          </div>
+          <iframe src="https://www.google.com/maps?q=205+Moorside+Road,+M41+5SJ&output=embed"
+            width="100%" height="280" style="border:0;display:block;border-radius:4px;"
+            allowfullscreen referrerpolicy="no-referrer-when-downgrade" loading="lazy"></iframe>
         </div>
       </div>
     </div>
@@ -1448,19 +1437,6 @@
     document.querySelectorAll(`[data-page="${id}"], [data-page-m="${id}"]`)
       .forEach(l => l.classList.add('active'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (id === 'room') {
-      const ph = document.getElementById('map-placeholder');
-      if (ph && !ph.dataset.loaded) {
-        ph.dataset.loaded = '1';
-        const iframe = document.createElement('iframe');
-        iframe.src = 'https://www.google.com/maps?q=205+Moorside+Road,+M41+5SJ&output=embed';
-        iframe.width = '100%'; iframe.height = '280';
-        iframe.style.cssText = 'border:0;display:block;border-radius:4px;';
-        iframe.allowFullscreen = true;
-        iframe.referrerPolicy = 'no-referrer-when-downgrade';
-        ph.replaceWith(iframe);
-      }
-    }
     if (id === 'faqs') {
       const list = document.getElementById('faqList');
       if (list && !list.dataset.built) { list.dataset.built = '1'; buildFAQs(); }
