@@ -283,6 +283,38 @@
     .treatment-card:hover .treatment-card-img { transform: scale(1.04); }
     .treatment-card-img-wrap { overflow: hidden; }
 
+    /* ─── Treatments mobile carousel ─── */
+    .treatments-wrap { overflow: hidden; }
+    .treatments-track {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 2rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .treatment-arrows { display: none; }
+    @media (max-width: 640px) {
+      .treatments-track {
+        display: flex; gap: 0;
+        transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      }
+      .treatments-track .treatment-card { flex-shrink:0; width:100%; }
+      .treatment-arrows {
+        display: flex; align-items:center; justify-content:center;
+        gap: 1.5rem; margin-top: 1.5rem;
+      }
+      .treatment-arrow-btn {
+        background:white; border:1px solid var(--border);
+        width:2.4rem; height:2.4rem; border-radius:50%; cursor:pointer;
+        display:flex; align-items:center; justify-content:center;
+        box-shadow:0 2px 12px rgba(180,120,100,0.1);
+      }
+      .treatment-indicator {
+        font-size:0.7rem; letter-spacing:0.15em;
+        text-transform:uppercase; color:var(--muted);
+      }
+    }
+
     /* ─── Review Cards ─── */
     .review-card {
       background: white; padding: 2rem 1.75rem;
@@ -615,29 +647,40 @@
         <p class="eyebrow" style="margin-bottom:0.75rem;">What I Offer</p>
         <h2 class="section-title">Treatments</h2>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:800px;margin:0 auto;">
-        <div class="treatment-card">
-          <div class="treatment-card-img-wrap">
-            <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush">
+      <div class="treatments-wrap">
+        <div class="treatments-track" id="treatmentsTrack">
+          <div class="treatment-card">
+            <div class="treatment-card-img-wrap">
+              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush">
+            </div>
+            <div style="padding:1.5rem;">
+              <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
+              <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:0.75rem;">Lip blush is a permanent makeup tattoo treatment that enhances the natural colour, shape and definition of your lips by only tattooing on to lip tissue (not onto face tissue).</p>
+              <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;">I do 2 different styles of lip blush; a sheer lip tint effect and a lip stick effect. Both are the same process however with a lip stick effect blush, I am implanting more pigment into your lips which gives a more saturated lip stick effect.</p>
+              <p style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;color:var(--rose);">From £250</p>
+            </div>
           </div>
-          <div style="padding:1.5rem;">
-            <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
-            <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:0.75rem;">Lip blush is a permanent makeup tattoo treatment that enhances the natural colour, shape and definition of your lips by only tattooing on to lip tissue (not onto face tissue).</p>
-            <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;">I do 2 different styles of lip blush; a sheer lip tint effect and a lip stick effect. Both are the same process however with a lip stick effect blush, I am implanting more pigment into your lips which gives a more saturated lip stick effect.</p>
-            <p style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;color:var(--rose);">From £250</p>
+          <div class="treatment-card">
+            <div class="treatment-card-img-wrap">
+              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;">
+            </div>
+            <div style="padding:1.5rem;">
+              <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
+              <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:0.75rem;">Hyper-realism brows, powder brows and combination brows are permanent makeup tattoo treatments that can create, define and fill your brows depending on your brow goals, your starting point and your maintenance goals.</p>
+              <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;">Hyper-realism brows are hair-stroke brows, powder brows give a similar result to a brow tint and combination brows are some hair-strokes and some shading. All 3 styles can be very natural and/or more bold depending on your style and your goals.</p>
+              <p style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;color:var(--rose);">From £225</p>
+            </div>
           </div>
         </div>
-        <div class="treatment-card">
-          <div class="treatment-card-img-wrap">
-            <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;">
-          </div>
-          <div style="padding:1.5rem;">
-            <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
-            <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:0.75rem;">Hyper-realism brows, powder brows and combination brows are permanent makeup tattoo treatments that can create, define and fill your brows depending on your brow goals, your starting point and your maintenance goals.</p>
-            <p style="font-size:0.84rem;color:var(--muted);line-height:1.75;margin-bottom:1rem;">Hyper-realism brows are hair-stroke brows, powder brows give a similar result to a brow tint and combination brows are some hair-strokes and some shading. All 3 styles can be very natural and/or more bold depending on your style and your goals.</p>
-            <p style="font-size:0.75rem;font-weight:500;letter-spacing:0.12em;color:var(--rose);">From £225</p>
-          </div>
-        </div>
+      </div>
+      <div class="treatment-arrows">
+        <button class="treatment-arrow-btn" onclick="moveTreatment(-1)" aria-label="Previous treatment">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7L9 12" stroke="#3a2822" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <span class="treatment-indicator"><span id="treatmentCurrent">1</span> / 2</span>
+        <button class="treatment-arrow-btn" onclick="moveTreatment(1)" aria-label="Next treatment">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 2L10 7L5 12" stroke="#3a2822" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
       <div style="text-align:center;margin-top:2.5rem;">
         <button class="btn btn-ghost" onclick="showPage('prices')">View Full Price List</button>
@@ -1503,11 +1546,12 @@
   }
 
   function sizeReviewCards() {
-    const slider = document.getElementById('reviewSlider');
-    const track  = document.getElementById('reviewTrack');
-    const cards  = track.querySelectorAll('.review-card');
+    const slider   = document.getElementById('reviewSlider');
+    const track    = document.getElementById('reviewTrack');
+    const cards    = track.querySelectorAll('.review-card');
     if (!cards.length) return;
-    const w = (slider.offsetWidth - reviewGap * (reviewVisible - 1)) / reviewVisible;
+    const visible  = window.innerWidth <= 640 ? 1 : reviewVisible;
+    const w = (slider.offsetWidth - reviewGap * (visible - 1)) / visible;
     cards.forEach(c => { c.style.minWidth = w + 'px'; c.style.width = w + 'px'; });
     applyReviewTransform(false);
   }
@@ -1556,6 +1600,16 @@
   window.addEventListener('resize', sizeReviewCards);
   window.addEventListener('load',   initReview);
   setTimeout(initReview, 100);
+
+  // ─── Treatment carousel (mobile only) ─────────────────────
+  let treatmentIndex = 0;
+  window.moveTreatment = function(dir) {
+    if (window.innerWidth > 640) return;
+    treatmentIndex = (treatmentIndex + dir + 2) % 2;
+    document.getElementById('treatmentsTrack').style.transform =
+      `translateX(-${treatmentIndex * 100}%)`;
+    document.getElementById('treatmentCurrent').textContent = treatmentIndex + 1;
+  };
 
   // ─── Gallery Filter ────────────────────────────────────────
   function filterGallery(cat, btn) {
