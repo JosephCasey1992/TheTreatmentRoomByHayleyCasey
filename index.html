@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Treatment Room by Hayley Casey | Permanent Makeup Artist</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
@@ -24,6 +23,11 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    a { color: inherit; text-decoration: none; }
+    img, video { max-width: 100%; display: block; }
+    input, select, textarea, button { font-family: inherit; font-size: inherit; line-height: inherit; }
+    table { border-collapse: collapse; border-spacing: 0; }
+    ol, ul { list-style: none; }
 
     html { scroll-behavior: smooth; overflow-x: hidden; }
     html, body { max-width: 100%; }
@@ -555,7 +559,7 @@
     <!-- Single row: logo left, nav absolutely centred, hamburger right -->
     <div class="header-top">
       <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey"
-           class="logo-img" onclick="showPage('home')">
+           class="logo-img" width="506" height="488" onclick="showPage('home')">
 
       <!-- Desktop nav — centred over the full header width -->
       <nav class="desktop-nav" role="navigation">
@@ -639,7 +643,7 @@
         <!-- Image -->
         <div style="position:relative;">
           <div style="overflow:hidden;">
-            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey" fetchpriority="high"
+            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey" fetchpriority="high" width="967" height="1350"
                  style="width:100%;height:460px;object-fit:cover;object-position:center 0%;filter:brightness(0.97) saturate(0.87);display:block;">
           </div>
           <!-- Floating badge -->
@@ -682,7 +686,7 @@
         <div class="treatments-track" id="treatmentsTrack">
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush" loading="lazy" decoding="async">
+              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush" loading="lazy" decoding="async" width="760" height="427">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
@@ -693,7 +697,7 @@
           </div>
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;" loading="lazy" decoding="async">
+              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;" loading="lazy" decoding="async" width="1050" height="621">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
