@@ -74,10 +74,14 @@
     .logo-img:hover { opacity: 0.8; }
 
     .desktop-nav {
-      display: flex; justify-content: center;
+      display: flex;
+      position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+      align-items: center; justify-content: center;
+      pointer-events: none;
       gap: 2.25rem;
       padding: 0.6rem 0;
     }
+    .desktop-nav > div { pointer-events: auto; display: flex; gap: 2.25rem; }
 
     .nav-link {
       font-size: 0.68rem; font-weight: 500;
@@ -399,7 +403,7 @@
     @media (max-width: 900px) {
       .g3 { grid-template-columns: 1fr; }
     }
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
       .desktop-nav { display: none; }
       .mobile-nav-btn { display: block; }
       .g2 { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -461,9 +465,8 @@
            class="logo-img" onclick="showPage('home')">
 
       <!-- Desktop nav — centred over the full header width -->
-      <nav class="desktop-nav" role="navigation"
-           style="position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;pointer-events:none;">
-        <div style="pointer-events:auto;display:flex;gap:2.25rem;">
+      <nav class="desktop-nav" role="navigation">
+        <div>
           <button class="nav-link active" onclick="showPage('home')"    data-page="home">Home</button>
           <button class="nav-link"        onclick="showPage('prices')"  data-page="prices">Price List</button>
           <button class="nav-link"        onclick="showPage('gallery')" data-page="gallery">Results</button>
