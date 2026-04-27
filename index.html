@@ -382,7 +382,10 @@
       width: max-content;
       animation: gallery-scroll 52s linear infinite;
     }
-    .gallery-scroll-track:hover { animation-play-state: paused; }
+    @media (hover: hover) {
+      .gallery-scroll-track:hover { animation-play-state: paused; }
+    }
+    .gallery-scroll-track.paused { animation-play-state: paused; }
     .gallery-scroll-track img {
       width: 280px;
       height: auto;
@@ -1600,6 +1603,14 @@
   window.addEventListener('resize', sizeReviewCards);
   window.addEventListener('load',   initReview);
   setTimeout(initReview, 100);
+
+  // ─── Gallery scroll — tap to pause/resume on touch devices ─
+  const galleryTrack = document.querySelector('.gallery-scroll-track');
+  if (galleryTrack) {
+    galleryTrack.addEventListener('click', () => {
+      galleryTrack.classList.toggle('paused');
+    });
+  }
 
   // ─── Treatment carousel (mobile only) ─────────────────────
   let treatmentIndex = 0;
