@@ -255,6 +255,27 @@
       border: 1px solid rgba(212,176,168,0.28);
       box-shadow: 0 2px 24px rgba(180,120,100,0.07), 0 1px 6px rgba(180,120,100,0.04);
     }
+    .review-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .review-text.expanded {
+      display: block;
+      -webkit-line-clamp: unset;
+      overflow: visible;
+    }
+    .review-more {
+      background: none; border: none; padding: 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--rose); cursor: pointer;
+      margin-top: 0.5rem; display: inline-block;
+    }
+    .review-more:hover { color: var(--dark); }
     .stars { color: #c4987a; letter-spacing: 0.06em; }
 
     /* ─── Price List ─── */
@@ -293,13 +314,12 @@
       display: flex;
       gap: 12px;
       width: max-content;
-      animation: gallery-scroll 28s linear infinite;
+      animation: gallery-scroll 52s linear infinite;
     }
     .gallery-scroll-track:hover { animation-play-state: paused; }
     .gallery-scroll-track img {
       width: 280px;
-      height: 280px;
-      object-fit: cover;
+      height: auto;
       border-radius: 6px;
       flex-shrink: 0;
       filter: brightness(0.97) saturate(0.88);
@@ -556,7 +576,7 @@
       <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:800px;margin:0 auto;">
         <div class="treatment-card">
           <div class="treatment-card-img-wrap">
-            <img class="treatment-card-img" src="https://placehold.co/440x270/f0d0c0/8a4840?text=Lip+Blush" alt="Lip Blush">
+            <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush">
           </div>
           <div style="padding:1.5rem;">
             <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
@@ -567,7 +587,7 @@
         </div>
         <div class="treatment-card">
           <div class="treatment-card-img-wrap">
-            <img class="treatment-card-img" src="https://placehold.co/440x270/e8d4c4/7a5040?text=Brows" alt="Brows">
+            <img class="treatment-card-img" src="brand_assets/HP Pic2.jpg" alt="Brows" style="object-position: 90% center;">
           </div>
           <div style="padding:1.5rem;">
             <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
@@ -602,74 +622,74 @@
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"Hayley is an absolute artist. My lip blush looks so natural and I get compliments every single day. Best investment I've ever made — I won't go anywhere else!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Sarah M. — Lip Blush</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Hayley did an amazing job on my lip blush. She was extremely professional, talking me through each step as she went through the process. Pain free and they look amazing 👏"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Angela H. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"I was so nervous but Hayley made me feel completely at ease from start to finish. My brows have completely transformed my face — I save so much time every morning!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Emma K. — Powder Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Had a lovely treatment with Hayley, she has incredible attention to detail and thrives on perfection, she totally put me at ease with her friendly banter, would I book in again?...i already have! 🙂"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Fiona M. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"The treatment room is gorgeous and Hayley is so professional and talented. My lash enhancement is perfect — I wake up looking polished every single day. Highly recommend!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Claire R. — Lash Enhancement</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"I have recently had my brows done by Hayley and am over the moon with the result. Such a lovely reassuring lady who makes you feel at ease from the get go. Hayley explains everything she is about to do in great detail and makes you feel very relaxed. I also have an appointment to have lip blush treatment very shortly and am looking forward to the same excellent results. Thank you Hayley!"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Jackie H. — Brows</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"I cannot recommend Hayley enough. My brows are absolutely perfect — she took so much care designing the shape and I've never felt so confident. Worth every penny!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Lauren T. — Hyper-Realism Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"I am in love with my lip blush! I was nervous about getting them done but Hayley put me at ease, talked me through every step & I didn't feel a thing having the treatment! Hayley is a perfectionist with her work and my lips really are perfect I can't thank you enough! I love the colour it was matched perfectly, I would 100% recommend Hayley, I can't wait for my further top up! 🤍"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Danielle — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"Hayley is so warm and professional. I was nervous about lip blush but she talked me through everything. The result is so soft and natural — I absolutely love it!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Niamh B. — Lip Blush</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Absolutely love my lip blush! Hayley is amazing, she takes her time to explain everything she is doing during the process constantly checking you're still numb so you feel no pain and also gives you an aftercare pack with everything you need! Cannot recommend her enough! xxx"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Anna C. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"I travel over an hour to see Hayley and I'd travel twice as far. Her attention to detail is incredible — my brows look so real, nobody can believe they're done!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Rachel D. — Powder Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Been drawing my eyebrows on for years and they were getting sparse. So I came across Hayley and reached out to her about my eyebrows. And what a saviour she is 😄. We had a consultation and set a date for my new brows and she didn't disappoint. We discussed the colour and shape. A shape that would suit my face. And she went to work. The end result was amazing. And now I never have to draw my eyebrows on ever again thanks to Hayley. I would recommend Hayley. Even if you are in doubt about having this treatment then don't be she is simply amazing and very good at what she does. Highly recommend you will not be disappointed."</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Sarah T. — Brows</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"From consultation to aftercare, the experience was flawless. The studio is beautiful, Hayley is so skilled and my lip blush healed perfectly. 10/10!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Chloe P. — HD Lip Blush</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"I saw Hayley last week for Lip Blush, the whole appt was so calm, relaxing and professional, Hayley talked me through everything beforehand and throughout the treatment and is so so good at what she does. Can't wait for my top up!!"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Vicky S. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"I've had my brows done twice now and the results just keep getting better. Hayley really listens to what you want and delivers every single time. Couldn't be happier!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Jessica F. — Combination Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"If you're thinking about having a lip blush, Hayley Casey is the one for you! She is so incredibly passionate about the industry and perfection, she is a true professional! She made me feel so at ease and listened to what I wanted and my concerns, giving advice along the way. I am so happy with the results and would recommend her to anyone with more than 5 stars if I could. Thank you Hayley x"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Vicky H. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"Such a gorgeous space and Hayley made me feel so welcome. My lip blush colour is exactly what I asked for — natural but defined. I wake up feeling beautiful every day!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Amy S. — Sheer Lip Blush</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Had my brows done this week. I am so pleased with them they look so real and easy to manage. Hayley was lovely she guided me throughout every step of the process and after care. I would 100% recommend Hayley Casey and the treatment room amazing service worth every penny ❤️"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Louise M. — Brows</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"Absolutely obsessed with my new brows. Hayley's work is so precise and the shape she chose suited my face perfectly. I've had so many compliments. Thank you!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Megan H. — Hyper-Realism Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"I recently had my lip blush done with Hayley, and I couldn't be more thrilled with the results! From the moment I walked in, she made me feel so comfortable with her warm, friendly, and professional demeanor. She took the time to listen to exactly what I wanted, and her attention to detail was outstanding. The entire process was seamless, and the results are absolutely amazing — I'm over the moon! I highly recommend Hayley to anyone looking for top-notch service and fantastic results. I will definitely be coming back! 💖"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Victoria L. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"I put off getting lip blush for years and I'm so annoyed I didn't do it sooner. Hayley is a true professional — the result is stunning and so natural. Love, love, love!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Kate O. — HD Lip Blush</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Hayley was absolutely beautiful from start to finish xx loving my lip blush..waiting to go back for just a little top up in March xx 😘"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Michele J. — Lip Blush</p>
             </div>
 
             <div class="review-card" style="box-sizing:border-box;flex-shrink:0;">
               <p class="stars" style="margin-bottom:1rem;font-size:0.85rem;">★★★★★</p>
-              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:1.1rem;line-height:1.65;">"Hayley is genuinely one of the most talented artists I've ever met. My brows look completely natural and save me so much time every morning. Highly, highly recommend!"</p>
-              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);">Sinead M. — Powder Brows</p>
+              <p style="font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--dark);margin-bottom:0.5rem;line-height:1.65;" class="review-text">"Absolutely made up with my lip blush, Hayley really listens to what you want. I was struggling to decide so asked Hayley to match colours up against my complexion. The colour and shape are perfect. I felt so comfortable during my appointment, no pain at all and you can tell Hayley loves what she does, the results speak for themselves. Would definitely recommend to anyone thinking to have lip blush. She's the best!!!"</p>
+              <p style="font-size:0.68rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-top:1rem;">Helen — Lip Blush</p>
             </div>
 
           </div>
@@ -828,23 +848,37 @@
       <!-- Auto-scroll gallery -->
       <div class="gallery-scroll-wrap">
         <div class="gallery-scroll-track">
-          <img src="https://placehold.co/400x400/f0cfc0/7a3020?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/e0d0c0/5a4030?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/f5c8b0/8a2818?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/ddd0b8/604828?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/e8b8a8/803020?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/d8c8a8/584030?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/f2c0a8/8a2820?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/d4c4bc/4a3828?text=Brows" alt="Brows">
+          <img src="brand_assets/R1.JPEG" alt="Results">
+          <img src="brand_assets/R2.JPEG" alt="Results">
+          <img src="brand_assets/R3.JPEG" alt="Results">
+          <img src="brand_assets/R4.JPEG" alt="Results">
+          <img src="brand_assets/R5.JPEG" alt="Results">
+          <img src="brand_assets/R6.JPEG" alt="Results">
+          <img src="brand_assets/R7.JPEG" alt="Results">
+          <img src="brand_assets/R8.JPEG" alt="Results">
+          <img src="brand_assets/R9.JPEG" alt="Results">
+          <img src="brand_assets/R10.jpg" alt="Results">
+          <img src="brand_assets/R11.JPEG" alt="Results">
+          <img src="brand_assets/R12.JPEG" alt="Results">
+          <img src="brand_assets/R13.JPEG" alt="Results">
+          <img src="brand_assets/R14.JPEG" alt="Results">
+          <img src="brand_assets/R15.JPEG" alt="Results">
           <!-- Duplicated for seamless loop -->
-          <img src="https://placehold.co/400x400/f0cfc0/7a3020?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/e0d0c0/5a4030?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/f5c8b0/8a2818?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/ddd0b8/604828?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/e8b8a8/803020?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/d8c8a8/584030?text=Brows" alt="Brows">
-          <img src="https://placehold.co/400x400/f2c0a8/8a2820?text=Lip+Blush" alt="Lip Blush">
-          <img src="https://placehold.co/400x400/d4c4bc/4a3828?text=Brows" alt="Brows">
+          <img src="brand_assets/R1.JPEG" alt="Results">
+          <img src="brand_assets/R2.JPEG" alt="Results">
+          <img src="brand_assets/R3.JPEG" alt="Results">
+          <img src="brand_assets/R4.JPEG" alt="Results">
+          <img src="brand_assets/R5.JPEG" alt="Results">
+          <img src="brand_assets/R6.JPEG" alt="Results">
+          <img src="brand_assets/R7.JPEG" alt="Results">
+          <img src="brand_assets/R8.JPEG" alt="Results">
+          <img src="brand_assets/R9.JPEG" alt="Results">
+          <img src="brand_assets/R10.jpg" alt="Results">
+          <img src="brand_assets/R11.JPEG" alt="Results">
+          <img src="brand_assets/R12.JPEG" alt="Results">
+          <img src="brand_assets/R13.JPEG" alt="Results">
+          <img src="brand_assets/R14.JPEG" alt="Results">
+          <img src="brand_assets/R15.JPEG" alt="Results">
         </div>
       </div>
 
@@ -872,7 +906,7 @@
 
       <!-- Full-width image 1 -->
       <div style="overflow:hidden;border-radius:4px;margin-bottom:5rem;">
-        <img src="https://placehold.co/1200x600/e8dcd6/7a5840?text=The+Treatment+Room" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+        <img src="brand_assets/TTR L Pic1.JPG" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;object-position:center 60%;display:block;filter:brightness(0.97) saturate(0.88);">
       </div>
 
       <!-- Row 1: Image Left, Text Right -->
@@ -916,7 +950,7 @@
 
       <!-- Full-width image 2 -->
       <div style="overflow:hidden;border-radius:4px;margin-bottom:2rem;">
-        <img src="https://placehold.co/1200x600/f0e4dc/8a6050?text=The+Treatment+Room" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+        <img src="brand_assets/TTR L Pic2.JPG" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
       </div>
 
     </div>
@@ -1260,6 +1294,15 @@
         </div>
 
       </form>
+
+      <!-- Success -->
+      <div id="consultSuccess" style="display:none;text-align:center;padding:4rem 1rem;">
+        <div style="width:52px;height:52px;border-radius:50%;background:var(--cream);border:1px solid var(--blush);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="var(--rose)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 10 8 14 16 6"/></svg>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;margin-bottom:0.75rem;">Form Submitted!</h3>
+        <p style="color:var(--muted);font-size:0.9rem;">Thank you. Hayley will be in touch shortly.</p>
+      </div>
     </div>
   </section>
 </div><!-- /page-consult -->
@@ -1325,10 +1368,41 @@
     window.showPage = function(id) { orig(id); if (id === 'consult') setTimeout(initSig, 50); };
   })();
 
-  window.submitConsultForm = function() {
+  window.submitConsultForm = async function() {
     const form = document.getElementById('consultForm');
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    alert('Thank you! Your consultation form has been submitted. Hayley will be in touch via WhatsApp shortly.');
+
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const fd = new FormData(form);
+    const data = Object.fromEntries(fd.entries());
+
+    // Collect checked medical conditions
+    data.medicalConditions = Array.from(form.querySelectorAll('input[type="checkbox"][name^="mc_"]:checked'))
+      .map(el => el.closest('label').textContent.trim()).join(', ') || 'None';
+
+    // Signature as base64
+    data.signature = document.getElementById('sigCanvas').toDataURL('image/png');
+
+    try {
+      const res = await fetch('/send-consultation', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) throw new Error('Server error');
+      form.style.display = 'none';
+      const success = document.getElementById('consultSuccess');
+      if (success) success.style.display = 'block';
+      else alert('Thank you! Your consultation form has been submitted. Hayley will be in touch shortly.');
+    } catch {
+      btn.disabled = false;
+      btn.textContent = 'Something went wrong — please try again';
+      btn.style.background = '#8b2020';
+      setTimeout(() => { btn.textContent = 'Submit Consultation Form'; btn.style.background = ''; }, 4000);
+    }
   };
 
   // ─── Mobile Nav ────────────────────────────────────────────
@@ -1345,6 +1419,25 @@
   const reviewGap     = 24; // px (1.5rem)
   let   reviewIndex   = reviewVisible; // start after prepended clones
   let   reviewBusy    = false;
+
+  function toggleReviewText(btn) {
+    const p = btn.previousElementSibling;
+    const expanded = p.classList.toggle('expanded');
+    btn.textContent = expanded ? 'Read less' : 'Read more';
+  }
+
+  function addReadMoreButtons() {
+    document.querySelectorAll('.review-text').forEach(p => {
+      if (p.nextElementSibling && p.nextElementSibling.classList.contains('review-more')) return;
+      // Only add button if text is actually clamped
+      if (p.scrollHeight <= p.clientHeight) return;
+      const btn = document.createElement('button');
+      btn.className = 'review-more';
+      btn.textContent = 'Read more';
+      btn.setAttribute('onclick', 'toggleReviewText(this)');
+      p.insertAdjacentElement('afterend', btn);
+    });
+  }
 
   function initReview() {
     const track = document.getElementById('reviewTrack');
@@ -1364,6 +1457,7 @@
 
     track.addEventListener('transitionend', onReviewEnd);
     sizeReviewCards();
+    addReadMoreButtons();
   }
 
   function sizeReviewCards() {
@@ -1501,15 +1595,44 @@
   }
 
   // ─── Contact Form ──────────────────────────────────────────
-  function submitForm(e) {
+  async function submitForm(e) {
     e.preventDefault();
-    document.getElementById('contactForm').style.display = 'none';
-    document.getElementById('formSuccess').classList.add('show');
-    setTimeout(() => {
-      document.getElementById('formSuccess').classList.remove('show');
-      document.getElementById('contactForm').style.display = 'block';
-      document.getElementById('contactForm').reset();
-    }, 5000);
+    const form = document.getElementById('contactForm');
+    const btn = form.querySelector('button[type="submit"]');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    const [firstName, lastName] = [inputs[0].value, inputs[1].value];
+    const email = inputs[2].value;
+    const phone = inputs[3].value;
+    const treatment = inputs[4].value;
+    const previousPmu = inputs[5].value;
+    const message = inputs[6].value;
+
+    try {
+      const res = await fetch('/send-message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, lastName, email, phone, treatment, previousPmu, message }),
+      });
+      if (!res.ok) throw new Error('Server error');
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('show');
+      setTimeout(() => {
+        document.getElementById('formSuccess').classList.remove('show');
+        form.style.display = 'block';
+        form.reset();
+      }, 6000);
+    } catch {
+      btn.textContent = 'Something went wrong — please try again';
+      btn.style.background = '#8b2020';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+      }, 4000);
+    }
   }
 
   // ─── Init ──────────────────────────────────────────────────

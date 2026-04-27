@@ -1,0 +1,25 @@
+{
+  "name": "website-building",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey/issues"
+  },
+  "homepage": "https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey#readme",
+  "description": "",
+  "type": "module",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "nodemailer": "^8.0.6"
+  }
+}

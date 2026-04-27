@@ -1,5 +1,5 @@
-import puppeteer from '/tmp/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
-import { executablePath } from '/tmp/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
+import puppeteer from '/Users/josephcasey/.npm/_npx/7d92d9a2d2ccc630/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
+import { executablePath } from '/Users/josephcasey/.npm/_npx/7d92d9a2d2ccc630/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
 import { readdir } from 'fs/promises';
 import { join } from 'path';
 
