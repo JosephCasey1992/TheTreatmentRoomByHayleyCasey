@@ -22,7 +22,8 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html, body { max-width: 100%; }
 
     body {
       background: var(--cream-light);
@@ -469,11 +470,15 @@
       .g3 { grid-template-columns: 1fr; }
     }
     /* ─── Consultation form mobile fixes ─── */
+    .cf-grid-personal > div,
+    .cf-grid-allergies > div,
+    .cf-grid-conditions > label { min-width: 0; }
+    input[type="date"].cf-input { min-width: 0; width: 100%; }
+
     @media (max-width: 640px) {
       .cf-grid-personal   { grid-template-columns: 1fr !important; }
-      .cf-grid-allergies  { grid-template-columns: 1fr 1fr !important; }
+      .cf-grid-allergies  { grid-template-columns: 1fr 1fr !important; gap: 0.6rem 0.75rem !important; }
       .cf-grid-conditions { grid-template-columns: 1fr !important; }
-      #page-consult .section-inner { overflow-x: hidden; }
     }
 
     @media (max-width: 1024px) {
