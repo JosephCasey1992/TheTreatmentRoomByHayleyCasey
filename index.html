@@ -559,7 +559,7 @@
     <!-- Single row: logo left, nav absolutely centred, hamburger right -->
     <div class="header-top">
       <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey"
-           class="logo-img" width="506" height="488" fetchpriority="high" onclick="showPage('home')">
+           class="logo-img" width="208" height="200" fetchpriority="high" onclick="showPage('home')">
 
       <!-- Desktop nav — centred over the full header width -->
       <nav class="desktop-nav" role="navigation">
@@ -588,7 +588,7 @@
 
 <nav class="mobile-nav" id="mobileNav" role="navigation">
   <button class="mobile-nav-close" onclick="closeMobile()" aria-label="Close menu">&#x2715;</button>
-  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room" class="mobile-nav-logo" loading="lazy" decoding="async">
+  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room" class="mobile-nav-logo" loading="lazy" decoding="async" width="208" height="200">
   <button class="nav-link" onclick="showPage('home');closeMobile()"    data-page-m="home">Home</button>
   <div class="mobile-nav-divider"></div>
   <button class="nav-link" onclick="showPage('prices');closeMobile()"  data-page-m="prices">Price List</button>
@@ -853,10 +853,9 @@
           <button class="btn" onclick="showPage('contact')">Book Now</button>
         </div>
         <div>
-          <iframe
-            src="https://www.google.com/maps?q=205+Moorside+Road,+M41+5SJ&output=embed"
-            width="100%" height="280" style="border:0;display:block;border-radius:4px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+          <div id="map-placeholder" style="width:100%;height:280px;border-radius:4px;background:var(--cream);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:0.8rem;color:var(--muted);letter-spacing:0.1em;">Loading map…</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1433,7 +1432,7 @@
      FOOTER
 ═══════════════════════════════════════ -->
 <footer>
-  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey" class="footer-logo" loading="lazy" decoding="async">
+  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey" class="footer-logo" loading="lazy" decoding="async" width="208" height="200">
   <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin-bottom:0.4rem;">The Treatment Room by Hayley Casey</p>
   <p style="font-size:0.78rem;color:rgba(245,237,232,0.45);">© 2024 &nbsp;·&nbsp; Urmston, Manchester &nbsp;·&nbsp; <a href="https://www.instagram.com/hayleycaseypmu" target="_blank" rel="noopener" style="color:rgba(245,237,232,0.45);text-decoration:none;border-bottom:1px solid rgba(245,237,232,0.2);">@hayleycaseypmu</a></p>
 </footer>
@@ -1453,6 +1452,19 @@
     document.querySelectorAll(`[data-page="${id}"], [data-page-m="${id}"]`)
       .forEach(l => l.classList.add('active'));
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (id === 'room') {
+      const ph = document.getElementById('map-placeholder');
+      if (ph && !ph.dataset.loaded) {
+        ph.dataset.loaded = '1';
+        const iframe = document.createElement('iframe');
+        iframe.src = 'https://www.google.com/maps?q=205+Moorside+Road,+M41+5SJ&output=embed';
+        iframe.width = '100%'; iframe.height = '280';
+        iframe.style.cssText = 'border:0;display:block;border-radius:4px;';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'no-referrer-when-downgrade';
+        ph.replaceWith(iframe);
+      }
+    }
   }
 
   // ─── Signature Canvas ──────────────────────────────────────
