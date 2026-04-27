@@ -468,6 +468,14 @@
     @media (max-width: 900px) {
       .g3 { grid-template-columns: 1fr; }
     }
+    /* ─── Consultation form mobile fixes ─── */
+    @media (max-width: 640px) {
+      .cf-grid-personal   { grid-template-columns: 1fr !important; }
+      .cf-grid-allergies  { grid-template-columns: 1fr 1fr !important; }
+      .cf-grid-conditions { grid-template-columns: 1fr !important; }
+      #page-consult .section-inner { overflow-x: hidden; }
+    }
+
     @media (max-width: 1024px) {
       .desktop-nav { display: none; }
       .mobile-nav-btn { display: block; }
@@ -1182,7 +1190,7 @@
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);margin-bottom:0.25rem;">Personal Details</h3>
           <span class="divider-line" style="margin-bottom:1.5rem;display:block;"></span>
 
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.5rem;">
+          <div class="cf-grid-personal" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.5rem;">
             <div style="display:flex;flex-direction:column;gap:0.35rem;">
               <label class="cf-label">Full Name *</label>
               <input class="cf-input" type="text" name="fullName" required placeholder="Your full name">
@@ -1219,7 +1227,7 @@
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);margin-bottom:0.25rem;">Allergies</h3>
           <span class="divider-line" style="margin-bottom:0.75rem;display:block;"></span>
           <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Have you ever had an allergic reaction to any of the following? *</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem 1rem;margin-bottom:1rem;">
+          <div class="cf-grid-allergies" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem 1rem;margin-bottom:1rem;">
             <div class="cf-yn-row"><span>Metals</span><span class="cf-yn-btns"><label><input type="radio" name="al_metals" value="Yes" required> Yes</label><label><input type="radio" name="al_metals" value="No"> No</label></span></div>
             <div class="cf-yn-row"><span>Foods</span><span class="cf-yn-btns"><label><input type="radio" name="al_foods" value="Yes" required> Yes</label><label><input type="radio" name="al_foods" value="No"> No</label></span></div>
             <div class="cf-yn-row"><span>Glycerine</span><span class="cf-yn-btns"><label><input type="radio" name="al_glycerine" value="Yes" required> Yes</label><label><input type="radio" name="al_glycerine" value="No"> No</label></span></div>
@@ -1257,7 +1265,7 @@
           <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:var(--dark);margin-bottom:0.25rem;">Medical Conditions</h3>
           <span class="divider-line" style="margin-bottom:0.75rem;display:block;"></span>
           <p style="color:var(--muted);font-size:0.85rem;margin-bottom:1rem;">Please tick any that apply to you (past or present):</p>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem 1.5rem;font-size:0.84rem;">
+          <div class="cf-grid-conditions" style="display:grid;grid-template-columns:1fr 1fr;gap:0.45rem 1.5rem;font-size:0.84rem;">
             <label class="cf-check"><input type="checkbox" name="mc_heart"> Heart Condition</label>
             <label class="cf-check"><input type="checkbox" name="mc_palpitations"> Palpitations</label>
             <label class="cf-check"><input type="checkbox" name="mc_mitralvalve"> Mitral Valve Prolapsed</label>
