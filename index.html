@@ -473,7 +473,14 @@
     .cf-grid-personal > div,
     .cf-grid-allergies > div,
     .cf-grid-conditions > label { min-width: 0; }
-    input[type="date"].cf-input { min-width: 0; width: 100%; }
+    input[type="date"].cf-input {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0;
+    }
 
     @media (max-width: 640px) {
       .cf-grid-personal   { grid-template-columns: 1fr !important; }
