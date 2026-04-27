@@ -173,7 +173,7 @@ const server = createServer(async (req, res) => {
 
   const url = decodeURIComponent(req.url === '/' ? '/index.html' : req.url);
   const filePath = join(__dirname, url);
-  const ext = extname(filePath);
+  const ext = extname(filePath).toLowerCase();
   try {
     const data = await readFile(filePath);
     res.writeHead(200, { 'Content-Type': mime[ext] || 'application/octet-stream' });
