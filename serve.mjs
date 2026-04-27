@@ -4,6 +4,7 @@ import { readFile } from 'fs/promises';
 import { extname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { gzipSync } from 'zlib';
 import nodemailer from 'nodemailer';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -174,15 +175,47 @@ const server = createServer(async (req, res) => {
   const url = decodeURIComponent(req.url === '/' ? '/index.html' : req.url);
   const filePath = join(__dirname, url);
   const ext = extname(filePath).toLowerCase();
+
+  const imgExts = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico', '.woff2', '.svg']);
+  const textExts = new Set(['.html', '.css', '.js', '.json', '.mjs']);
+  const cacheControl = ext === '.html'
+    ? 'no-cache'
+    : imgExts.has(ext)
+      ? 'public, max-age=31536000, immutable'
+      : 'public, max-age=86400';
+
+  const acceptsGzip = (req.headers['accept-encoding'] || '').includes('gzip');
+
   try {
     const data = await readFile(filePath);
-    res.writeHead(200, { 'Content-Type': mime[ext] || 'application/octet-stream' });
-    res.end(data);
+    const headers = {
+      'Content-Type': mime[ext] || 'application/octet-stream',
+      'Cache-Control': cacheControl,
+    };
+    if (textExts.has(ext) && acceptsGzip) {
+      const compressed = gzipSync(data);
+      headers['Content-Encoding'] = 'gzip';
+      headers['Content-Length'] = compressed.length;
+      res.writeHead(200, headers);
+      res.end(compressed);
+    } else {
+      res.writeHead(200, headers);
+      res.end(data);
+    }
   } catch {
     try {
       const data = await readFile(join(__dirname, 'index.html'));
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(data);
+      const headers = { 'Content-Type': 'text/html', 'Cache-Control': 'no-cache' };
+      if (acceptsGzip) {
+        const compressed = gzipSync(data);
+        headers['Content-Encoding'] = 'gzip';
+        headers['Content-Length'] = compressed.length;
+        res.writeHead(200, headers);
+        res.end(compressed);
+      } else {
+        res.writeHead(200, headers);
+        res.end(data);
+      }
     } catch {
       res.writeHead(404);
       res.end('Not found');

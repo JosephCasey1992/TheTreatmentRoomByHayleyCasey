@@ -7,7 +7,10 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap"></noscript>
+  <link rel="preload" as="image" href="brand_assets/Headshot.jpg" fetchpriority="high">
   <style>
     :root {
       --cream:       #f5ede8;
@@ -581,7 +584,7 @@
 
 <nav class="mobile-nav" id="mobileNav" role="navigation">
   <button class="mobile-nav-close" onclick="closeMobile()" aria-label="Close menu">&#x2715;</button>
-  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room" class="mobile-nav-logo">
+  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room" class="mobile-nav-logo" loading="lazy" decoding="async">
   <button class="nav-link" onclick="showPage('home');closeMobile()"    data-page-m="home">Home</button>
   <div class="mobile-nav-divider"></div>
   <button class="nav-link" onclick="showPage('prices');closeMobile()"  data-page-m="prices">Price List</button>
@@ -636,7 +639,7 @@
         <!-- Image -->
         <div style="position:relative;">
           <div style="overflow:hidden;">
-            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey"
+            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey" fetchpriority="high"
                  style="width:100%;height:460px;object-fit:cover;object-position:center 0%;filter:brightness(0.97) saturate(0.87);display:block;">
           </div>
           <!-- Floating badge -->
@@ -679,7 +682,7 @@
         <div class="treatments-track" id="treatmentsTrack">
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush">
+              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush" loading="lazy" decoding="async">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
@@ -690,7 +693,7 @@
           </div>
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;">
+              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;" loading="lazy" decoding="async">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
@@ -961,37 +964,37 @@
       <!-- Auto-scroll gallery -->
       <div class="gallery-scroll-wrap">
         <div class="gallery-scroll-track">
-          <img src="brand_assets/R1.JPEG" alt="Results">
-          <img src="brand_assets/R2.JPEG" alt="Results">
-          <img src="brand_assets/R3.JPEG" alt="Results">
-          <img src="brand_assets/R4.JPEG" alt="Results">
-          <img src="brand_assets/R5.JPEG" alt="Results">
-          <img src="brand_assets/R6.JPEG" alt="Results">
-          <img src="brand_assets/R7.JPEG" alt="Results">
-          <img src="brand_assets/R8.JPEG" alt="Results">
-          <img src="brand_assets/R9.JPEG" alt="Results">
-          <img src="brand_assets/R10.jpg" alt="Results">
-          <img src="brand_assets/R11.JPEG" alt="Results">
-          <img src="brand_assets/R12.JPEG" alt="Results">
-          <img src="brand_assets/R13.JPEG" alt="Results">
-          <img src="brand_assets/R14.JPEG" alt="Results">
-          <img src="brand_assets/R15.JPEG" alt="Results">
+          <img src="brand_assets/R1.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R2.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R3.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R4.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R5.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R6.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R7.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R8.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R9.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R10.jpg" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R11.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R12.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R13.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R14.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R15.JPEG" alt="Results" loading="lazy" decoding="async">
           <!-- Duplicated for seamless loop -->
-          <img src="brand_assets/R1.JPEG" alt="Results">
-          <img src="brand_assets/R2.JPEG" alt="Results">
-          <img src="brand_assets/R3.JPEG" alt="Results">
-          <img src="brand_assets/R4.JPEG" alt="Results">
-          <img src="brand_assets/R5.JPEG" alt="Results">
-          <img src="brand_assets/R6.JPEG" alt="Results">
-          <img src="brand_assets/R7.JPEG" alt="Results">
-          <img src="brand_assets/R8.JPEG" alt="Results">
-          <img src="brand_assets/R9.JPEG" alt="Results">
-          <img src="brand_assets/R10.jpg" alt="Results">
-          <img src="brand_assets/R11.JPEG" alt="Results">
-          <img src="brand_assets/R12.JPEG" alt="Results">
-          <img src="brand_assets/R13.JPEG" alt="Results">
-          <img src="brand_assets/R14.JPEG" alt="Results">
-          <img src="brand_assets/R15.JPEG" alt="Results">
+          <img src="brand_assets/R1.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R2.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R3.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R4.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R5.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R6.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R7.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R8.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R9.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R10.jpg" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R11.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R12.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R13.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R14.JPEG" alt="Results" loading="lazy" decoding="async">
+          <img src="brand_assets/R15.JPEG" alt="Results" loading="lazy" decoding="async">
         </div>
       </div>
 
@@ -1019,13 +1022,13 @@
 
       <!-- Full-width image 1 -->
       <div style="overflow:hidden;border-radius:4px;margin-bottom:5rem;">
-        <img src="brand_assets/TTR L Pic1.JPG" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;object-position:center 60%;display:block;filter:brightness(0.97) saturate(0.88);">
+        <img src="brand_assets/TTR L Pic1.JPG" alt="The Treatment Room" loading="lazy" decoding="async" style="width:100%;height:500px;object-fit:cover;object-position:center 60%;display:block;filter:brightness(0.97) saturate(0.88);">
       </div>
 
       <!-- Row 1: Image Left, Text Right -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;">
         <div style="overflow:hidden;border-radius:4px;">
-          <img src="brand_assets/TTR S Pic1.JPG" alt="The Treatment Room" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+          <img src="brand_assets/TTR S Pic1.JPG" alt="The Treatment Room" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
         </div>
         <div>
           <p class="eyebrow" style="margin-bottom:0.75rem;">Your Space to Relax</p>
@@ -1044,14 +1047,14 @@
           <p style="color:var(--muted);font-size:0.92rem;line-height:1.85;margin-bottom:1rem;">At The Treatment Room hygiene is paramount. Every tool Hayley uses during the tattooing part of your treatment is either sterile and/or one time use and it is kept separate to anything else in the room. Everything you need to look after your new lips or brows during the initial healing stage is given to you and Hayley is available for any help and support afterwards.</p>
         </div>
         <div style="overflow:hidden;border-radius:4px;">
-          <img src="brand_assets/TTR S Pic2.JPG" alt="Inside the Treatment Room" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+          <img src="brand_assets/TTR S Pic2.JPG" alt="Inside the Treatment Room" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
         </div>
       </div>
 
       <!-- Row 3: Image Left, Text Right -->
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;">
         <div style="overflow:hidden;border-radius:4px;">
-          <img src="brand_assets/TTR S Pic3.JPG" alt="Treatment Room details" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+          <img src="brand_assets/TTR S Pic3.JPG" alt="Treatment Room details" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
         </div>
         <div>
           <p class="eyebrow" style="margin-bottom:0.75rem;">What to Expect</p>
@@ -1063,7 +1066,7 @@
 
       <!-- Full-width image 2 -->
       <div style="overflow:hidden;border-radius:4px;margin-bottom:2rem;">
-        <img src="brand_assets/TTR L Pic2.JPG" alt="The Treatment Room" style="width:100%;height:500px;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
+        <img src="brand_assets/TTR L Pic2.JPG" alt="The Treatment Room" loading="lazy" decoding="async" style="width:100%;height:500px;object-fit:cover;display:block;filter:brightness(0.97) saturate(0.88);">
       </div>
 
     </div>
@@ -1426,7 +1429,7 @@
      FOOTER
 ═══════════════════════════════════════ -->
 <footer>
-  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey" class="footer-logo">
+  <img src="brand_assets/Brand Logo.jpg" alt="The Treatment Room by Hayley Casey" class="footer-logo" loading="lazy" decoding="async">
   <p style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--blush);margin-bottom:0.4rem;">The Treatment Room by Hayley Casey</p>
   <p style="font-size:0.78rem;color:rgba(245,237,232,0.45);">© 2024 &nbsp;·&nbsp; Urmston, Manchester &nbsp;·&nbsp; <a href="https://www.instagram.com/hayleycaseypmu" target="_blank" rel="noopener" style="color:rgba(245,237,232,0.45);text-decoration:none;border-bottom:1px solid rgba(245,237,232,0.2);">@hayleycaseypmu</a></p>
 </footer>
