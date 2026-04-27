@@ -147,6 +147,13 @@ const server = createServer(async (req, res) => {
     return;
   }
 
+  if (req.url === '/_restart') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('restarting');
+    setTimeout(() => process.exit(0), 100);
+    return;
+  }
+
   if (req.method === 'POST' && req.url === '/send-consultation') {
     try {
       await handleSendConsultation(req, res);
