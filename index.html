@@ -1444,10 +1444,6 @@
     document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
     const page = document.getElementById('page-' + id);
     if (!page) return;
-    // Reset animation
-    page.style.animation = 'none';
-    page.offsetHeight;
-    page.style.animation = '';
     page.classList.add('active');
     document.querySelectorAll(`[data-page="${id}"], [data-page-m="${id}"]`)
       .forEach(l => l.classList.add('active'));
@@ -1464,6 +1460,10 @@
         iframe.referrerPolicy = 'no-referrer-when-downgrade';
         ph.replaceWith(iframe);
       }
+    }
+    if (id === 'faqs') {
+      const list = document.getElementById('faqList');
+      if (list && !list.dataset.built) { list.dataset.built = '1'; buildFAQs(); }
     }
   }
 
@@ -1592,8 +1592,10 @@
     });
 
     track.addEventListener('transitionend', onReviewEnd);
-    sizeReviewCards();
-    addReadMoreButtons();
+    requestAnimationFrame(() => {
+      sizeReviewCards();
+      addReadMoreButtons();
+    });
   }
 
   function sizeReviewCards() {
@@ -1650,7 +1652,6 @@
 
   window.addEventListener('resize', sizeReviewCards);
   window.addEventListener('load',   initReview);
-  setTimeout(initReview, 100);
 
   // ─── Gallery scroll — tap to pause/resume on touch devices ─
   const galleryTrack = document.querySelector('.gallery-scroll-track');
@@ -1791,7 +1792,7 @@
   }
 
   // ─── Init ──────────────────────────────────────────────────
-  buildFAQs();
+  // FAQ items built lazily on first visit to FAQs page
 </script>
 </body>
 </html>
