@@ -1,3 +1,4 @@
+// v2
 import 'dotenv/config';
 import { createServer } from 'http';
 import { readFile } from 'fs/promises';

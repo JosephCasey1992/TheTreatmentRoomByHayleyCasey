@@ -632,7 +632,7 @@
         <!-- Image -->
         <div style="position:relative;">
           <div style="overflow:hidden;">
-            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey" loading="lazy" decoding="async" width="573" height="800"
+            <img src="brand_assets/Headshot.jpg" alt="Hayley Casey" loading="lazy" decoding="async" width="370" height="516"
                  style="width:100%;height:460px;object-fit:cover;object-position:center 0%;filter:brightness(0.97) saturate(0.87);display:block;">
           </div>
           <!-- Floating badge -->
@@ -675,7 +675,7 @@
         <div class="treatments-track" id="treatmentsTrack">
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush" loading="lazy" decoding="async" width="760" height="427">
+              <img class="treatment-card-img" src="brand_assets/HP Pic1.jpg" alt="Lip Blush" loading="lazy" decoding="async" width="380" height="213">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Lip Blush</h3>
@@ -686,7 +686,7 @@
           </div>
           <div class="treatment-card">
             <div class="treatment-card-img-wrap">
-              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;" loading="lazy" decoding="async" width="1050" height="621">
+              <img class="treatment-card-img" src="brand_assets/HP Pic2.JPG" alt="Brows" style="object-position: 90% center;" loading="lazy" decoding="async" width="380" height="224">
             </div>
             <div style="padding:1.5rem;">
               <h3 style="font-size:1.45rem;font-weight:500;margin-bottom:0.5rem;">Brows</h3>
@@ -1626,7 +1626,8 @@
     applyReviewTransform(true);
   }
 
-  window.addEventListener('resize', sizeReviewCards);
+  let resizeRaf;
+  window.addEventListener('resize', () => { cancelAnimationFrame(resizeRaf); resizeRaf = requestAnimationFrame(sizeReviewCards); });
   window.addEventListener('load',   initReview);
 
   // ─── Gallery scroll — tap to pause/resume on touch devices ─
