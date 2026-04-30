@@ -10,6 +10,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Prepare production files
+        run: |
+          mkdir -p deploy/brand_assets deploy/fonts deploy/send-message deploy/send-consultation
+          # Core files
+          cp index.html robots.txt sitemap.xml .htaccess deploy/
+          # PHP handlers
+          cp send-message.php send-consultation.php helpers.php deploy/
+          cp send-message/index.php deploy/send-message/
+          cp send-consultation/index.php deploy/send-consultation/
+          # Assets — webp only (originals are not referenced by the site)
+          cp brand_assets/*.webp deploy/brand_assets/
+          # Fonts
+          cp fonts/*.woff2 deploy/fonts/
+
       - name: Upload via SFTP
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
@@ -17,5 +32,5 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           port: 22
-          local_path: './*'
+          local_path: './deploy/*'
           remote_path: './httpdocs'

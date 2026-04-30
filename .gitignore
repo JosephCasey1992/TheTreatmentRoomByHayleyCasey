@@ -1,3 +1,20 @@
+# Environment / secrets
 .env
+
+# Dependencies
 node_modules/
+
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# Local dev artefacts
+temporary screenshots/
+deploy/
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo

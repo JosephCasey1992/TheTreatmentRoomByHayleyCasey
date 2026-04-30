@@ -1,7 +1,7 @@
-// v2
 import 'dotenv/config';
 import { createServer } from 'http';
-import { readFile } from 'fs/promises';
+import { readFile, mkdir, readdir } from 'fs/promises';
+import { mkdirSync } from 'fs';
 import { extname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -28,39 +28,68 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-async function handleSendConsultation(req, res) {
+function esc(v) {
+  return String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+async function handleSendMessage(req) {
+  const chunks = [];
+  for await (const chunk of req) chunks.push(chunk);
+  const body = JSON.parse(Buffer.concat(chunks).toString());
+  const { firstName, lastName, email, phone, treatment, previousPmu, message } = body;
+
+  await transporter.sendMail({
+    from: `"The Treatment Room Website" <${process.env.SMTP_USER}>`,
+    to: 'hello@hayleycasey.co.uk',
+    replyTo: email,
+    subject: `New enquiry from ${firstName} ${lastName} — ${treatment}`,
+    text: [
+      `Name: ${firstName} ${lastName}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Treatment: ${treatment}`,
+      `Previous PMU: ${previousPmu}`,
+      `Message:\n${message}`,
+    ].join('\n'),
+    html: `
+      <p><strong>Name:</strong> ${esc(firstName)} ${esc(lastName)}</p>
+      <p><strong>Email:</strong> <a href="mailto:${esc(email)}">${esc(email)}</a></p>
+      <p><strong>Phone:</strong> ${esc(phone)}</p>
+      <p><strong>Treatment:</strong> ${esc(treatment)}</p>
+      <p><strong>Previous PMU:</strong> ${esc(previousPmu)}</p>
+      <p><strong>Message:</strong><br>${esc(message).replace(/\n/g, '<br>')}</p>
+    `,
+  });
+}
+
+async function handleSendConsultation(req) {
   const chunks = [];
   for await (const chunk of req) chunks.push(chunk);
   const d = JSON.parse(Buffer.concat(chunks).toString());
 
-  // Pull signature out as an attachment
   const sigBase64 = d.signature?.replace(/^data:image\/png;base64,/, '') ?? '';
-
   const yesNo = (v) => v === 'Yes' ? '✅ Yes' : '❌ No';
   const checked = (v) => v === 'on' ? '✅' : '—';
 
   const html = `
-    <h2 style="font-family:serif;">Consultation Form — ${d.fullName}</h2>
-
+    <h2 style="font-family:serif;">Consultation Form — ${esc(d.fullName)}</h2>
     <h3>Personal Details</h3>
     <table cellpadding="6" style="border-collapse:collapse;width:100%;font-size:14px;">
-      <tr><td><strong>Full Name</strong></td><td>${d.fullName}</td></tr>
-      <tr><td><strong>Date of Birth</strong></td><td>${d.dob}</td></tr>
-      <tr><td><strong>Address</strong></td><td>${d.address}</td></tr>
-      <tr><td><strong>Mobile</strong></td><td>${d.mobile}</td></tr>
-      <tr><td><strong>Email</strong></td><td>${d.email}</td></tr>
-      <tr><td><strong>Medications</strong></td><td>${d.medication || 'None'}</td></tr>
-      <tr><td><strong>Referral</strong></td><td>${d.referral || '—'}</td></tr>
+      <tr><td><strong>Full Name</strong></td><td>${esc(d.fullName)}</td></tr>
+      <tr><td><strong>Date of Birth</strong></td><td>${esc(d.dob)}</td></tr>
+      <tr><td><strong>Address</strong></td><td>${esc(d.address)}</td></tr>
+      <tr><td><strong>Mobile</strong></td><td>${esc(d.mobile)}</td></tr>
+      <tr><td><strong>Email</strong></td><td>${esc(d.email)}</td></tr>
+      <tr><td><strong>Medications</strong></td><td>${esc(d.medication) || 'None'}</td></tr>
+      <tr><td><strong>Referral</strong></td><td>${esc(d.referral) || '—'}</td></tr>
     </table>
-
     <h3>Allergies</h3>
     <table cellpadding="6" style="border-collapse:collapse;width:100%;font-size:14px;">
       <tr><td>Metals</td><td>${yesNo(d.al_metals)}</td><td>Foods</td><td>${yesNo(d.al_foods)}</td></tr>
       <tr><td>Glycerine</td><td>${yesNo(d.al_glycerine)}</td><td>Pigments</td><td>${yesNo(d.al_pigments)}</td></tr>
       <tr><td>Lidocaine</td><td>${yesNo(d.al_lidocaine)}</td><td>Antiseptics</td><td>${yesNo(d.al_antiseptics)}</td></tr>
-      <tr><td colspan="2"><strong>Other</strong></td><td colspan="2">${d.otherAllergies || 'None'}</td></tr>
+      <tr><td colspan="2"><strong>Other</strong></td><td colspan="2">${esc(d.otherAllergies) || 'None'}</td></tr>
     </table>
-
     <h3>Medical Questions</h3>
     <table cellpadding="6" style="border-collapse:collapse;width:100%;font-size:14px;">
       <tr><td>Dental injection to numb gums?</td><td>${yesNo(d.mq_dental)}</td></tr>
@@ -74,20 +103,16 @@ async function handleSendConsultation(req, res) {
       <tr><td>Give blood?</td><td>${yesNo(d.mq_blood)}</td></tr>
       <tr><td>Sensitised reaction to tattoos / PMU?</td><td>${yesNo(d.mq_tatreaction)}</td></tr>
     </table>
-
     <h3>Medical Conditions</h3>
-    <p style="font-size:14px;">${d.medicalConditions || 'None'}</p>
-
+    <p style="font-size:14px;">${esc(d.medicalConditions) || 'None'}</p>
     <h3>Additional Information</h3>
-    <p style="font-size:14px;">${d.extraInfo || 'None'}</p>
-
+    <p style="font-size:14px;">${esc(d.extraInfo) || 'None'}</p>
     <h3>Consent</h3>
     <table cellpadding="6" style="border-collapse:collapse;width:100%;font-size:14px;">
       <tr><td>General consent</td><td>${checked(d.consent_general)} Agreed</td></tr>
       <tr><td>GDPR &amp; Photography</td><td>${d.gdprConsent === 'agree' ? '✅ Agreed' : '❌ Did not agree'}</td></tr>
       <tr><td>Booking policy</td><td>${checked(d.consent_policy)} Agreed</td></tr>
     </table>
-
     <h3>Signature</h3>
     <img src="cid:signature" alt="Client signature" style="border:1px solid #ccc;max-width:500px;">
   `;
@@ -107,68 +132,32 @@ async function handleSendConsultation(req, res) {
   });
 }
 
-async function handleSendMessage(req, res) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  const body = JSON.parse(Buffer.concat(chunks).toString());
-
-  const { firstName, lastName, email, phone, treatment, previousPmu, message } = body;
-
-  await transporter.sendMail({
-    from: `"The Treatment Room Website" <${process.env.SMTP_USER}>`,
-    to: 'hello@hayleycasey.co.uk',
-    replyTo: email,
-    subject: `New enquiry from ${firstName} ${lastName} — ${treatment}`,
-    text: [
-      `Name: ${firstName} ${lastName}`,
-      `Email: ${email}`,
-      `Phone: ${phone}`,
-      `Treatment: ${treatment}`,
-      `Previous PMU: ${previousPmu}`,
-      `Message:\n${message}`,
-    ].join('\n'),
-    html: `
-      <p><strong>Name:</strong> ${firstName} ${lastName}</p>
-      <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-      <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Treatment:</strong> ${treatment}</p>
-      <p><strong>Previous PMU:</strong> ${previousPmu}</p>
-      <p><strong>Message:</strong><br>${message.replace(/\n/g, '<br>')}</p>
-    `,
-  });
-}
+const imgExts = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico', '.woff2', '.svg']);
+const textExts = new Set(['.html', '.css', '.js', '.json', '.mjs']);
 
 const server = createServer(async (req, res) => {
-  // IONOS terminates TLS at the edge and sets X-Forwarded-Proto.
-  // Redirect to HTTPS if the original request came in over HTTP.
-  if (req.headers['x-forwarded-proto'] === 'http') {
-    res.writeHead(301, { Location: `https://${req.headers.host}${req.url}` });
-    res.end();
-    return;
-  }
-
   if (req.method === 'POST' && req.url === '/send-consultation') {
     try {
-      await handleSendConsultation(req, res);
+      await handleSendConsultation(req);
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
     } catch (err) {
       console.error('Consultation mail error:', err.message);
       res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      res.end(JSON.stringify({ ok: false }));
     }
     return;
   }
 
   if (req.method === 'POST' && req.url === '/send-message') {
     try {
-      await handleSendMessage(req, res);
+      await handleSendMessage(req);
       res.writeHead(200, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ ok: true }));
     } catch (err) {
       console.error('Mail error:', err.message);
       res.writeHead(500, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ ok: false, error: err.message }));
+      res.end(JSON.stringify({ ok: false }));
     }
     return;
   }
@@ -176,16 +165,13 @@ const server = createServer(async (req, res) => {
   const url = decodeURIComponent(req.url === '/' ? '/index.html' : req.url);
   const filePath = join(__dirname, url);
   const ext = extname(filePath).toLowerCase();
+  const acceptsGzip = (req.headers['accept-encoding'] || '').includes('gzip');
 
-  const imgExts = new Set(['.jpg', '.jpeg', '.png', '.webp', '.gif', '.ico', '.woff2', '.svg']);
-  const textExts = new Set(['.html', '.css', '.js', '.json', '.mjs']);
   const cacheControl = ext === '.html'
     ? 'no-cache'
     : imgExts.has(ext)
       ? 'public, max-age=31536000, immutable'
       : 'public, max-age=86400';
-
-  const acceptsGzip = (req.headers['accept-encoding'] || '').includes('gzip');
 
   try {
     const data = await readFile(filePath);

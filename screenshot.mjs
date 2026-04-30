@@ -1,13 +1,11 @@
-import puppeteer from '/Users/josephcasey/.npm/_npx/7d92d9a2d2ccc630/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
-import { executablePath } from '/Users/josephcasey/.npm/_npx/7d92d9a2d2ccc630/node_modules/puppeteer/lib/esm/puppeteer/puppeteer.js';
-import { readdir } from 'fs/promises';
+import puppeteer from 'puppeteer';
+import { mkdirSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 const url = process.argv[2] || 'http://localhost:3000';
 const label = process.argv[3] || '';
 
 const screenshotDir = './temporary screenshots';
-import { mkdirSync, readdirSync } from 'fs';
 try { mkdirSync(screenshotDir, { recursive: true }); } catch {}
 
 const existing = readdirSync(screenshotDir).filter(f => f.endsWith('.png'));
@@ -17,7 +15,6 @@ const filename = label ? `screenshot-${next}-${label}.png` : `screenshot-${next}
 const outPath = join(screenshotDir, filename);
 
 const browser = await puppeteer.launch({
-  executablePath: '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
   args: ['--no-sandbox', '--disable-setuid-sandbox'],
   headless: true,
 });

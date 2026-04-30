@@ -6,12 +6,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit(json_encode(['ok' => false]));
 }
 
-$d = json_decode(file_get_contents('php://input'), true);
+// Reject payloads over 512 KB (prevents oversized signature abuse)
+$raw = file_get_contents('php://input', false, null, 0, 524289);
+if (strlen($raw) > 524288) { http_response_code(413); exit(json_encode(['ok' => false])); }
+
+$d = json_decode($raw, true);
 if (!$d) { http_response_code(400); exit(json_encode(['ok' => false])); }
 
-function h($v) { return htmlspecialchars($v ?? '', ENT_QUOTES, 'UTF-8'); }
-function yn($v) { return $v === 'Yes' ? '✅ Yes' : '❌ No'; }
-function ck($v) { return $v === 'on' ? '✅' : '—'; }
+require_once __DIR__ . '/helpers.php';
 
 $to      = 'consultations@hayleycasey.co.uk';
 $from    = 'hello@hayleycasey.co.uk';

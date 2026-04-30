@@ -1,26 +1,23 @@
 {
-  "name": "website-building",
+  "name": "the-treatment-room",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Website for The Treatment Room by Hayley Casey — permanent makeup artist, Urmston, Manchester",
+  "author": "Hayley Casey",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node serve.mjs",
+    "screenshot": "node screenshot.mjs http://localhost:3000"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey/issues"
-  },
-  "homepage": "https://github.com/JosephCasey1992/TheTreatmentRoomByHayleyCasey#readme",
-  "description": "",
-  "type": "module",
   "dependencies": {
     "dotenv": "^17.4.2",
-    "nodemailer": "^8.0.6"
+    "nodemailer": "^8.0.6",
+    "puppeteer": "^24.0.0"
   },
   "devDependencies": {
     "html-minifier-terser": "^7.2.0",
