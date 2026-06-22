@@ -15,7 +15,9 @@ jobs:
         run: |
           mkdir -p deploy/brand_assets deploy/fonts deploy/send-message deploy/send-consultation
           # Core files
-          cp index.html robots.txt sitemap.xml .htaccess deploy/
+          cp index.html robots.txt sitemap.xml .htaccess site.webmanifest deploy/
+          # Favicons
+          cp favicon.ico favicon-16x16.png favicon-32x32.png apple-touch-icon.png android-chrome-192x192.png android-chrome-512x512.png deploy/
           # PHP handlers
           cp send-message.php send-consultation.php helpers.php deploy/
           cp send-message/index.php deploy/send-message/
